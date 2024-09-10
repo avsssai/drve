@@ -6,6 +6,9 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import "./tailwind.css";
+// Supports weights 100-900
+import "@fontsource-variable/raleway/wght.css";
+import Header from "./components/Header";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -16,7 +19,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="font-primary">
+        <div className="fixed top-2 w-full flex justify-center">
+          <Header />
+        </div>
         {children}
         <ScrollRestoration />
         <Scripts />
