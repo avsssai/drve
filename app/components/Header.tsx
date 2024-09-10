@@ -2,9 +2,9 @@ import { MenuIcon, Moon, ShoppingBag, User } from "lucide-react";
 
 export default function Header() {
   return (
-    <div>
+    <div className="rounded-lg shadow-lg bg-white w-[80vw] md:w-1/2 px-2 py-1">
       <nav>
-        <ul className="relative inline-flex justify-evenly items-center rounded-lg shadow-lg bg-white w-[80vw] md:w-1/2 px-2 py-1">
+        <ul className="relative inline-flex justify-evenly items-center w-full">
           <li className="justify-self-start">
             <MenuIcon size={16} />
           </li>

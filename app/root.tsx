@@ -9,6 +9,7 @@ import "./tailwind.css";
 // Supports weights 100-900
 import "@fontsource-variable/raleway/wght.css";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -19,11 +20,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className="font-primary">
-        <div className="fixed top-2 w-full flex justify-center">
+      <body className="font-primary isolate">
+        <div className="fixed top-2 w-full flex justify-center z-20">
           <Header />
         </div>
         {children}
+        <Footer />
         <ScrollRestoration />
         <Scripts />
       </body>
