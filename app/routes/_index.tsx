@@ -1,8 +1,10 @@
-import type { MetaFunction } from "@remix-run/node";
+import type { ActionFunctionArgs, MetaFunction } from "@remix-run/node";
 import { Link } from "@remix-run/react";
 import { EmblaOptionsType } from "embla-carousel";
 import { ArrowRight, ArrowUpRightFromSquare } from "lucide-react";
+import { db } from "~/auth/db.server";
 import Carousel from "~/components/Carousel";
+import LandingCarousel from "~/components/Carousel/landingCarousel";
 
 export const meta: MetaFunction = () => {
   return [
@@ -18,7 +20,7 @@ export default function Index() {
         {/* <button className="absolute bottom-10 left-0 right-0 w-fit px-2 py-1 rounded-full text-white z-10 bg-black">
           Shop Now
         </button> */}
-        <Carousel />
+        <LandingCarousel />
       </div>
       <div className="mt-8">
         <h2 className="text-2xl mb-8 font-bold tracking-wide uppercase text-center">
