@@ -1,3 +1,4 @@
+import { Link } from "@remix-run/react";
 import { MenuIcon, Moon, ShoppingBag, User } from "lucide-react";
 
 export default function Header() {
@@ -12,7 +13,9 @@ export default function Header() {
             <User size={16} />
           </li>
           <li className="rounded-full p-2 border-black border-2">
-            <span className="text-lg font-bold">drve.</span>
+            <Link className="text-lg font-bold" to="/">
+              drve.
+            </Link>
           </li>
           <li>
             <Moon size={16} />

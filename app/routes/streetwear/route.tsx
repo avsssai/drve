@@ -1,5 +1,3 @@
-import Carousel from "~/components/Carousel";
-import CarouselSlide from "~/components/Carousel/CarouselSlide";
 import StreetwearCarousel from "~/components/Carousel/streetwearCarousel";
 
 export default function Route() {
