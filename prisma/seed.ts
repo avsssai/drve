@@ -6,6 +6,7 @@ const users = [
     passwordHash:
       "$2a$10$Cx6JtrVqzDTw0gS9TMdOfu2MVZbQbSOsg73MQGdl6UlP8oudv1hF6",
     dob: "1995-06-19T00:00:00.000Z",
+    role: "ADMIN",
   },
   {
     email: "abc@email.com",

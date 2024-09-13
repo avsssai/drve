@@ -12,6 +12,7 @@ export const validateUserCredentials = async (
       email,
     },
   });
+
   if (!user) {
     return null;
   }
