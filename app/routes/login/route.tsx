@@ -53,6 +53,10 @@ export default function login() {
     <div className="mt-16 p-4 flex-1 md:flex">
       <Form method="post" className="shadow-lg p-4 rounded-lg sm:max-w-[300px]">
         <h1 className="mb-4 font-bold">Login to your account.</h1>
+
+        {actionData?.formError ? (
+          <p className="text-sm text-red-600">{actionData.formError}</p>
+        ) : null}
         <label className="text-xl font-bold" htmlFor="email">
           Email{" "}
           <input

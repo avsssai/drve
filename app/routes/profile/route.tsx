@@ -1,15 +1,28 @@
-import { User, UserCircle } from "lucide-react";
-import { Form, Link, NavLink, Outlet, useLoaderData } from "@remix-run/react";
+import { NavLink, Outlet, useLoaderData } from "@remix-run/react";
 import { json, LoaderFunctionArgs } from "@remix-run/node";
-import { getUserId } from "~/auth/session.server";
+import { getUserId, requireUserSession } from "~/auth/session.server";
+import { getCurrentLoggedInUser } from "~/user/userInfo.server";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const userId = await getUserId(request);
-  return json({ userId });
+  if (!userId) {
+    throw new Response("Unauthorized", {
+      status: 403,
+      statusText: "Unauthorized",
+    });
+  }
+  const user = await getCurrentLoggedInUser(userId);
+  if (!user) {
+    throw new Response("Unauthorized", {
+      status: 403,
+      statusText: "Unauthorized",
+    });
+  }
+  return json({ userId, role: user.role });
 };
 
 export default function Profile() {
-  const { userId } = useLoaderData<typeof loader>();
+  const { userId, role } = useLoaderData<typeof loader>();
   console.log(userId);
   return (
     <div className="mt-16 h-full w-full">
@@ -19,6 +32,7 @@ export default function Profile() {
             <li>
               <NavLink
                 to={"/profile"}
+                end
                 className={({ isActive }) =>
                   isActive ? "underline" : "no-underline"
                 }
@@ -36,22 +50,22 @@ export default function Profile() {
                 Orders
               </NavLink>
             </li>
+            {role === "ADMIN" ? (
+              <li>
+                <NavLink
+                  to={`/profile/add-product`}
+                  className={({ isActive }) =>
+                    isActive ? "underline" : "no-underline"
+                  }
+                >
+                  Add product
+                </NavLink>
+              </li>
+            ) : null}
           </ul>
         </div>
         <div className="flex-1">
-          <div className="flex flex-col justify-center items-center">
-            <UserCircle size={72} className="mb-8" />
-            <h1>John Doe</h1>
-            <p>johndoe@email.com</p>
-            <Form method="post" action="/logout">
-              <button
-                type="submit"
-                className="bg-black w-full text-white text-sm font-bold px-2 py-3 my-2 rounded-md focus:outline-none focus:ring focus:ring-black"
-              >
-                Logout
-              </button>
-            </Form>
-          </div>
+          <Outlet />
         </div>
       </div>
     </div>
