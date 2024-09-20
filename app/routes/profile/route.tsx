@@ -25,7 +25,7 @@ export default function Profile() {
   const { userId, role } = useLoaderData<typeof loader>();
   console.log(userId);
   return (
-    <div className="mt-16 h-full w-full">
+    <div className="mt-20 h-full w-full">
       <div className="flex gap-4 justify-start border-2 mx-auto max-w-[720px] p-4">
         <div className="border-r-2 border-r-gray-700">
           <ul className="mr-2 text-sm">
