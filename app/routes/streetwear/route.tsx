@@ -16,7 +16,7 @@ export default function Route() {
   const products = useLoaderData<typeof loader>();
 
   return (
-    <div className="mt-16 p-4 min-h-screen flex-1">
+    <div className="mt-16 p-4 flex-1">
       <h1 className="text-2xl font-bold tracking-[2px] uppercase mb-4">
         Streetwear
       </h1>

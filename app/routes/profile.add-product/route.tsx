@@ -27,7 +27,7 @@ export default function Orders() {
   return (
     <div>
       <h1 className="mb-4 font-bold text-2xl">Add a new product.</h1>
-      <Form method="post">
+      <form method="post">
         <label htmlFor="name">
           <p className="text-sm font-bold">Name</p>
           <input
@@ -111,7 +111,7 @@ export default function Orders() {
             Add Item
           </button>
         </div>
-      </Form>
+      </form>
     </div>
   );
 }
