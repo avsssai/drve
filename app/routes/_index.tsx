@@ -39,7 +39,7 @@ export default function Index() {
               />
             </div>
           </Link>
-          <Link to={"/sneakers"} className="w-full">
+          <Link to={"/shoes"} className="w-full">
             <div className="relative max-h-screen rounded-lg h-[400px] md:h-[calc(100vh-32px)] shadow-lg">
               <button className="inline-flex gap-2 shadow-lg items-center absolute px-2 py-1 text-sm font-bold bg-black text-white z-10">
                 Shop Sneakers <ArrowRight size={14} />
