@@ -21,8 +21,8 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 export default function ProductPage() {
   let data = useLoaderData<typeof loader>();
   return (
-    <div className="min-h-screen mt-16 p-8 flex-1 flex flex-col md:flex-row">
-      <div className="flex-1 h-fit">
+    <div className="min-h-screen mt-16 p-4 flex-1 flex flex-col md:flex-row">
+      <div className="flex-1 h-fit mb-8">
         <div className="relative aspect-square">
           <img
             src={data.product.imageURL}
@@ -37,6 +37,11 @@ export default function ProductPage() {
           <IndianRupee size={16} className="mt-1" /> {data.product.price}/-
         </p>
         <p className="text-sm font-bold">Get by tomorrow 2 PM</p>
+      </div>
+      <div className="flex">
+        <button className="flex justify-center items-center p-1 selec">
+          XS
+        </button>
       </div>
     </div>
   );
