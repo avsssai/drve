@@ -15,7 +15,7 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   return (
-    <div className="p-4">
+    <div className="p-4 md:p-16">
       <div className="mt-16 relative isolate">
         {/* <button className="absolute bottom-10 left-0 right-0 w-fit px-2 py-1 rounded-full text-white z-10 bg-black">
           Shop Now
