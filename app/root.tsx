@@ -13,14 +13,20 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { json, LoaderFunctionArgs } from "@remix-run/node";
 import { getUserId } from "./auth/session.server";
+import { getCartItems, numberOfItemsInCart } from "./routes/rootActions";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const userId = await getUserId(request);
-  return json({ userId });
+  const cartItems = userId ? await getCartItems(userId) : null;
+  const numOfItemsInCart = userId ? await numberOfItemsInCart(userId) : null;
+  return json({ userId, cartItems, numOfItemsInCart });
 };
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const { userId } = useLoaderData<typeof loader>();
+  const { userId, cartItems, numOfItemsInCart } =
+    useLoaderData<typeof loader>();
+  // console.log(cartItems, userId);
+  console.log(numOfItemsInCart);
   return (
     <html lang="en" className="h-full">
       <head>
@@ -31,7 +37,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body className="font-primary isolate flex flex-col h-full">
         <div className="fixed top-2 w-full flex justify-center z-20">
-          <Header userId={userId} />
+          <Header userId={userId} cartItems={cartItems} />
         </div>
         {children}
         <Footer />

@@ -1,7 +1,37 @@
 import { Link } from "@remix-run/react";
 import { MenuIcon, Moon, ShoppingBag, User } from "lucide-react";
+import ShoppingBagComponent from "./ShoppingBag";
 
-export default function Header({ userId }: { userId: string | null }) {
+interface CartItems {
+  id: string;
+  cart: {
+    id: string;
+    CartProduct: {
+      product: {
+        id: string;
+        name: string;
+        category: string;
+        subCategory: string;
+        createdAt: string;
+        updatedAt: string;
+        price: string;
+        imageURL: string;
+        userId: string;
+      };
+      productId: string;
+    }[];
+  } | null;
+}
+
+export default function Header({
+  userId,
+  cartItems,
+}: {
+  userId: string | null;
+  // cartItems: CartItems | null;
+  cartItems: CartItems | null;
+}) {
+  let numberOfItems = cartItems?.cart?.CartProduct.length;
   return (
     <div className="rounded-lg shadow-lg bg-white w-[80vw] md:w-1/2 px-2 py-1">
       <nav>
@@ -23,7 +53,11 @@ export default function Header({ userId }: { userId: string | null }) {
             <Moon size={16} />
           </li>
           <li>
-            <ShoppingBag size={16} />
+            {numberOfItems ? (
+              <ShoppingBagComponent items={numberOfItems} />
+            ) : (
+              <ShoppingBag size={16} />
+            )}
           </li>
         </ul>
       </nav>

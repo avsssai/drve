@@ -19,17 +19,35 @@ model User {
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @default(now())
   Product      Product[]
+  cart         Cart?
 }
 
 model Product {
-  id          String   @id @unique @default(uuid())
+  id          String        @id @unique @default(uuid())
   name        String
   category    String
   subCategory String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @default(now())
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @default(now())
   price       String
   imageURL    String
-  owner       User     @relation(fields: [userId], references: [id])
+  owner       User          @relation(fields: [userId], references: [id])
   userId      String
+  CartProduct CartProduct[]
+}
+
+model Cart {
+  id          String        @id @unique @default(uuid())
+  user        User          @relation(fields: [userId], references: [id])
+  userId      String        @unique
+  CartProduct CartProduct[]
+}
+
+model CartProduct {
+  id        String  @id @default(uuid())
+  cart      Cart    @relation(fields: [cartId], references: [id])
+  cartId    String
+  product   Product @relation(fields: [productId], references: [id])
+  productId String
+  quantity  Int
 }
