@@ -26,10 +26,12 @@ interface CartItems {
 export default function Header({
   userId,
   cartItems,
+  numberOfItemsInCart,
 }: {
   userId: string | null;
   // cartItems: CartItems | null;
   cartItems: CartItems | null;
+  numberOfItemsInCart: number | null;
 }) {
   let numberOfItems = cartItems?.cart?.CartProduct.length;
   return (
@@ -54,7 +56,7 @@ export default function Header({
           </li>
           <li>
             {numberOfItems ? (
-              <ShoppingBagComponent items={numberOfItems} />
+              <ShoppingBagComponent items={numberOfItemsInCart} />
             ) : (
               <ShoppingBag size={16} />
             )}

@@ -1,11 +1,9 @@
 import { ActionFunctionArgs, json, LoaderFunctionArgs } from "@remix-run/node";
 import { Form, useLoaderData } from "@remix-run/react";
 import { IndianRupee } from "lucide-react";
-import { useState } from "react";
 import invariant from "tiny-invariant";
 import { db } from "~/auth/db.server";
 import { getUserId } from "~/auth/session.server";
-import { useLocalStorage } from "~/hooks/useLocalStorage";
 import { badRequest } from "~/utils/badRequest";
 import { INTENTS } from "~/utils/constants";
 

@@ -25,8 +25,6 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 export function Layout({ children }: { children: React.ReactNode }) {
   const { userId, cartItems, numOfItemsInCart } =
     useLoaderData<typeof loader>();
-  // console.log(cartItems, userId);
-  console.log(numOfItemsInCart);
   return (
     <html lang="en" className="h-full">
       <head>
@@ -37,7 +35,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body className="font-primary isolate flex flex-col h-full">
         <div className="fixed top-2 w-full flex justify-center z-20">
-          <Header userId={userId} cartItems={cartItems} />
+          <Header
+            userId={userId}
+            cartItems={cartItems}
+            numberOfItemsInCart={numOfItemsInCart}
+          />
         </div>
         {children}
         <Footer />

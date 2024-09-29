@@ -13,8 +13,10 @@ export const getCartItems = async (userId: string) => {
           id: true,
           CartProduct: {
             select: {
+              id: true,
               productId: true,
               product: true,
+              quantity: true,
             },
           },
         },
