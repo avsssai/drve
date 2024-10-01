@@ -1,5 +1,11 @@
 import { ActionFunctionArgs, json, LoaderFunctionArgs } from "@remix-run/node";
-import { Form, useLoaderData } from "@remix-run/react";
+import {
+  Form,
+  useFetcher,
+  useLoaderData,
+  useNavigate,
+  useNavigation,
+} from "@remix-run/react";
 import { IndianRupee } from "lucide-react";
 import invariant from "tiny-invariant";
 import { db } from "~/auth/db.server";
@@ -84,7 +90,9 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
 export default function ProductPage() {
   let data = useLoaderData<typeof loader>();
-
+  const navigation = useFetcher();
+  console.log(navigation.state);
+  const submitting = navigation.state === "submitting";
   return (
     <div className=" mt-16 p-4 md:p-16 flex-1 flex flex-col md:flex-row gap-4">
       <div className="flex-1 h-fit mb-8">
@@ -126,7 +134,7 @@ export default function ProductPage() {
               className="bg-black text-white tracking-widest p-2 uppercase text-sm w-[140px]"
               type="submit"
             >
-              Add to cart
+              {submitting ? "Adding..." : "Add to cart"}
             </button>
           </Form>
         </div>

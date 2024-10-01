@@ -35,13 +35,13 @@ export default function Header({
 }) {
   let numberOfItems = cartItems?.cart?.CartProduct.length;
   return (
-    <div className="rounded-lg shadow-lg bg-white w-[80vw] md:w-1/2 px-2 py-1">
+    <div className="rounded-lg border-2 shadow-lg bg-white  px-2 py-1">
       <nav>
-        <ul className="relative inline-flex justify-evenly items-center w-full">
-          <li className="justify-self-start">
+        <ul className="relative inline-flex justify-evenly gap-16 items-center w-full">
+          {/* <li className="justify-self-start">
             <MenuIcon size={16} />
-          </li>
-          <li className="justify-self-start">
+          </li> */}
+          <li className="justify-self-start ml-4">
             <Link to={userId ? "/profile" : "/login"}>
               <User size={16} />
             </Link>
@@ -51,15 +51,17 @@ export default function Header({
               drve.
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Moon size={16} />
-          </li>
-          <li>
-            {numberOfItems ? (
-              <ShoppingBagComponent items={numberOfItemsInCart} />
-            ) : (
-              <ShoppingBag size={16} />
-            )}
+          </li> */}
+          <li className="mr-4">
+            <Link to={"/cart"}>
+              {numberOfItems ? (
+                <ShoppingBagComponent items={numberOfItemsInCart} />
+              ) : (
+                <ShoppingBag size={16} />
+              )}
+            </Link>
           </li>
         </ul>
       </nav>

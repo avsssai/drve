@@ -1,21 +1,27 @@
 import { User, UserCircle } from "lucide-react";
 import { Form, Link, NavLink, Outlet, useLoaderData } from "@remix-run/react";
 import { json, LoaderFunctionArgs } from "@remix-run/node";
-import { getUserId } from "~/auth/session.server";
+import { getUserId, requireUserSession } from "~/auth/session.server";
+import { getUser } from "./userActions";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const userId = await getUserId(request);
-  return json({ userId });
+  // change functionality to work even when user isnt signed in
+  // const userId = await getUserId(request);
+  const userId = await requireUserSession(request);
+  //
+
+  const user = await getUser(userId);
+
+  return json({ userId, user });
 };
 
 export default function Profile() {
-  const { userId } = useLoaderData<typeof loader>();
+  const { userId, user } = useLoaderData<typeof loader>();
   console.log(userId);
   return (
     <div className="flex flex-col justify-center items-center">
       <UserCircle size={72} className="mb-8" />
-      <h1>John Doe</h1>
-      <p>johndoe@email.com</p>
+      <h1>{user.email}</h1>
       <Form method="post" action="/logout">
         <button
           type="submit"
